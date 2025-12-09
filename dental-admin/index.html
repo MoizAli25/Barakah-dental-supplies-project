@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Barakah Dental Supplies – Admin Panel </title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="page-dashboard">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><img src="assets/BARAKAH-LOGO.png" alt="" style="width: 100%;"></div>
+      <nav class="nav">
+        <a href="index.html" class="active"> Dashboard</a>
+        <a href="products.html"> Products</a>
+        <a href="media.html"> Media</a>
+        <a href="orders.html"> Orders</a>
+        <a href="users.html"> Users</a>
+        <a href="settings.html"> Settings</a>
+        <a href="#" onclick="doLogout()"> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="header">
+        <div class="left"><h1>Admin Dashboard</h1></div>
+        <div class="right">
+          <div class="small">Welcome, Admin</div>
+          <div class="avatar">AU</div>
+        </div>
+      </header>
+
+      <section class="row">
+        <div class="col card">
+          <div class="stats"><div><div class="small">Products</div><div id="k-products" class="kpi">0</div></div><div class="small">Updated</div></div>
+        </div>
+        <div class="col card">
+          <div class="stats"><div><div class="small">Orders</div><div id="k-orders" class="kpi">0</div></div><div class="small">Today</div></div>
+        </div>
+        <div class="col card">
+          <div class="stats"><div><div class="small">Users</div><div id="k-users" class="kpi">0</div></div><div class="small">Active</div></div>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:18px">
+        <h3>Recent Orders</h3>
+        <table class="table">
+          <thead><tr><th>Order ID</th><th>Customer</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody id="recentOrdersBody"></tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>appInit();</script>
+
+  <script>
+  const session = JSON.parse(localStorage.getItem("session"));
+
+  if (!session || session.role !== "admin") {
+    // ❌ Redirect customers and guests
+    window.location.href = "../frontend/login.html";
+  }
+</script>
+
+</body>
+</html>

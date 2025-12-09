@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/><meta name="viewport"content="width=device-width,initial-scale=1"/>
+  <title>Products - Barakah Dental Supplies – Admin Panel</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="page-products">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><img src="assets/BARAKAH-LOGO.png" alt="" style="width: 100%;"></div>
+      <nav class="nav">
+        <a href="index.html"> Dashboard</a>
+        <a href="products.html" class="active"> Products</a>
+        <a href="media.html"> Media</a>
+        <a href="orders.html"> Orders</a>
+        <a href="users.html"> Users</a>
+        <a href="settings.html"> Settings</a>
+        <a href="#" onclick="doLogout()"> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="header"><div><h1>Products</h1></div><div class="right"><button onclick="document.getElementById('productFormPanel').scrollIntoView({behavior:'smooth'})" class="btn btn-primary">+ New Product</button></div></header>
+
+      <section id="productFormPanel" class="card">
+        <h3>Product Editor</h3>
+        <form id="productForm">
+          <div class="form-row">
+            <div class="form-group"><label>Title</label><input name="title" type="text" required></div>
+            <div class="form-group"><label>Category</label><input name="category" type="text" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Price</label><input name="price" type="number" step="0.01"></div>
+            <div class="form-group"><label>Stock</label><input name="stock" type="number"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="flex:2"><label>Description</label><textarea name="description" rows="3"></textarea></div>
+            <div class="form-group" style="flex:1">
+              <label>Featured</label><br>
+              <input name="featured" type="checkbox"> Featured<br><br>
+              <label>Upload Media</label><br>
+              <input id="productMedia" type="file" accept="image/*,video/*" multiple>
+              <div id="productMediaPreview" style="margin-top:10px;"></div>
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <button class="btn btn-primary" type="submit">Save Product</button>
+            <button type="reset" class="btn btn-ghost">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" style="margin-top:18px">
+        <h3>Products List</h3>
+        <div id="productsEmpty" class="empty" style="display:none">No products yet. Add your first product.</div>
+        <table class="table">
+          <thead><tr><th>ID</th><th>Product</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
+          <tbody id="productsList"></tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>appInit();</script>
+  <script>
+  const session = JSON.parse(localStorage.getItem("session"));
+
+  if (!session || session.role !== "admin") {
+    // ❌ Redirect customers and guests
+    window.location.href = "../frontend/login.html";
+  }
+</script>
+
+</body>
+</html>

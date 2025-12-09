@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/><meta name="viewport"content="width=device-width,initial-scale=1"/>
+  <title>Media - Barakah Dental Supplies – Admin Panel</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="page-media">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><img src="assets/BARAKAH-LOGO.png" alt="" style="width: 100%;"></div>
+      <nav class="nav">
+        <a href="index.html"> Dashboard</a>
+        <a href="products.html"> Products</a>
+        <a href="media.html" class="active"> Media</a>
+        <a href="orders.html"> Orders</a>
+        <a href="users.html"> Users</a>
+        <a href="settings.html"> Settings</a>
+        <a href="#" onclick="doLogout()"> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="header"><div><h1>Media</h1></div><div class="right"><input id="mediaUpload" type="file" multiple accept="image/*,video/*" /></div></header>
+
+      <section class="card">
+        <h3>Media Gallery</h3>
+        <div id="mediaGallery" class="media-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>appInit();</script>
+
+  <script>
+  const session = JSON.parse(localStorage.getItem("session"));
+
+  if (!session || session.role !== "admin") {
+    // ❌ Redirect customers and guests
+    window.location.href = "../frontend/login.html";
+  }
+</script>
+
+</body>
+</html>
